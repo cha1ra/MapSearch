@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         // delegete設定を追加
         self.searchBar.delegate = self
         self.locationManager.delegate = self
+        self.mapView.delegate = self
         
         // 位置情報取得するための認可をユーザーから取得
         self.locationManager.requestWhenInUseAuthorization()
@@ -115,4 +116,19 @@ extension ViewController: UISearchBarDelegate {
     }
 }
 
-extension ViewControl
+extension ViewController: MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let name = view.annotation?.title as? String {
+            self.showAlert(message: name)
+//            //アラートを作成
+//            let alert = UIAlertController(title: "", message: name, preferredStyle: .alert)
+//            // OKをクリックされたら閉じる
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//                alert.dismiss(animated: true, completion: nil)
+//            }))
+//            //アラートを表示
+//            self.present(alert, animated: true)
+            
+        }
+    }
+}
